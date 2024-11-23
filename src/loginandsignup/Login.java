@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         Left = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
+        namaUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         LoginBtn = new javax.swing.JButton();
@@ -94,10 +94,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(102, 102, 102));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Email");
+        jLabel2.setText("Username");
 
-        email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        email.setForeground(new java.awt.Color(102, 102, 102));
+        namaUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        namaUser.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel3.setBackground(new java.awt.Color(102, 102, 102));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -138,7 +138,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2)
-                                .addComponent(email)
+                                .addComponent(namaUser)
                                 .addComponent(jLabel3)
                                 .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                                 .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -202,9 +202,9 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
         // System.out.println("Sign up btn clicked");
-        String Email, Password, query, fname = null, passDb = null;
+        String username = null, Password, query, fname = null, passDb = null;
         String SUrl, SUser, SPass;
-        SUrl = "jdbc:MySQL://localhost:3306/java_user_database";
+        SUrl = "jdbc:MySQL://localhost:3306/lospollos";
         SUser = "root";
         SPass = "";
         int notFound = 0;
@@ -212,17 +212,17 @@ public class Login extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
             Statement st = con.createStatement();
-            if("".equals(email.getText())){
-                JOptionPane.showMessageDialog(new JFrame(), "Email Address is require", "Error",
+            if("".equals(namaUser.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Username is require", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }else if("".equals(password.getText())){
                 JOptionPane.showMessageDialog(new JFrame(), "Password is require", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }else {
-            Email    = email.getText();
+            username    = namaUser.getText();
             Password = password.getText();
             
-            query = "SELECT * FROM user WHERE email= '"+Email+"'";
+            query = "SELECT * FROM user WHERE username= '"+username+"'";
        
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
@@ -238,7 +238,7 @@ public class Login extends javax.swing.JFrame {
                 HomeFrame.setLocationRelativeTo(null); 
                 this.dispose();
             }else{
-               JOptionPane.showMessageDialog(new JFrame(), "Incorrect email or password", "Error",
+               JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
             password.setText("");
@@ -259,7 +259,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel Left;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JPanel Right;
-    private javax.swing.JTextField email;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -269,6 +268,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField namaUser;
     private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 }

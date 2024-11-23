@@ -4,6 +4,8 @@
  */
 package loginandsignup;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rahemet
@@ -16,6 +18,14 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
     }
+    
+    public Home(String role){
+        initComponents();
+        setLocationRelativeTo(null);
+        if (role.equals("Admin")) {
+            user.setVisible(false);
+        }
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,65 +36,140 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        user = new javax.swing.JLabel();
+        user = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         LogoutBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOME");
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Welcome Back");
+        user.setBackground(new java.awt.Color(255, 255, 153));
+        user.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user-3-fill.png"))); // NOI18N
+        user.setText("User");
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
-        user.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        user.setForeground(new java.awt.Color(0, 51, 102));
-        user.setText("John");
+        jButton2.setBackground(new java.awt.Color(255, 255, 153));
+        jButton2.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/group-3-fill.png"))); // NOI18N
+        jButton2.setText("Customer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 6, -1, -1));
 
-        LogoutBtn.setText("LOGOUT");
+        jButton3.setBackground(new java.awt.Color(255, 255, 153));
+        jButton3.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/menu-search-fill.png"))); // NOI18N
+        jButton3.setText("Category");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 6, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 153));
+        jButton4.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/box-1-fill.png"))); // NOI18N
+        jButton4.setText("Product");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 6, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 153));
+        jButton6.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/truck-fill.png"))); // NOI18N
+        jButton6.setText("Order");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 6, 90, -1));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 153));
+        jButton7.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/receipt-fill.png"))); // NOI18N
+        jButton7.setText("View Order");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 6, 100, -1));
+
+        LogoutBtn.setBackground(new java.awt.Color(255, 255, 153));
+        LogoutBtn.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
+        LogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout-box-fill.png"))); // NOI18N
+        LogoutBtn.setText("Logout");
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(LogoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 6, 90, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(133, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LogoutBtn))))
-                .addGap(124, 124, 124))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/images/home_background.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
         // TODO add your handling code here:
+        
+        int a = JOptionPane.showConfirmDialog(null, "Keluar dari aplikasi", "Select",JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            setVisible(false);
+        }
         
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
-        LoginFrame.setLocationRelativeTo(null); 
+        LoginFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
     
@@ -130,7 +215,12 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel user;
+    private javax.swing.JButton user;
     // End of variables declaration//GEN-END:variables
 }
