@@ -5,15 +5,19 @@
 package loginandsignup;
 
 import com.mysql.cj.conf.ConnectionPropertiesTransform;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
  * @author zero
  */
 public class ManageUser extends javax.swing.JFrame {
-    private int appuserPK = 0;
+    private int appuserPk = 0;
 
     /**
      * Creates new form ManageUser
@@ -84,6 +88,11 @@ public class ManageUser extends javax.swing.JFrame {
                 "ID", "Name", "Mobile Number", "Email", "Address", "Status"
             }
         ));
+        tableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUserMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableUser);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 73, 400, 420));
@@ -207,10 +216,10 @@ public class ManageUser extends javax.swing.JFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select *from appuser where userRole='Admin'");
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString("appuser_pk"), res.getString("name"), rs.getString("mobileNumber"), rs.getString("email"), rs.getString("address"), rs.getString("status")});
+                model.addRow(new Object[]{rs.getString("appuser_pk"), rs.getString("name"), rs.getString("mobileNumber"), rs.getString("email"), rs.getString("address"), rs.getString("status")});
             }
         }
-        catch(exception e){
+        catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_formComponentShown
@@ -257,19 +266,68 @@ public class ManageUser extends javax.swing.JFrame {
         String mobileNumber = txtMobileNumber.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-        String address = txtAddress.getext();
+        String address = txtAddress.getText();
         String status = (String) comboBoxStatus.getSelectedItem();
-        
+
         if(ValidateFields("new")){
             JOptionPane.showMessageDialog(null, "All field are required");
         }
         else {
-            try{}
-            catch(exception e){
+            try{
+                Connection con = ConnectionProvider.getCon();
+                PreparedStatement ps = con.prepareStatement("insert into appuser (userRole, name, mobileNumber,email,password,address,status) values ('Admin',?,?,?,?,?,?)");
+                ps.setString(1, name);
+                ps.setString(2, mobileNumber);
+                ps.setString(3, email);
+                ps.setString(4, password);
+                ps.setString(5, address);
+                ps.setString(6, status);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "User Added Successfully");
+                setVisible(false);
+                new ManageUser().setVisible(true);
+            }
+            catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void tableUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUserMouseClicked
+        // TODO add your handling code here:
+        int index = tableUser.getSelectedRow();
+        TableModel model = tableUser.getModel();
+        
+        String id = model.getValueAt(index, 0).toString();
+        appuserPk = Integer.parseInt(id);
+        
+        String name = model.getValueAt(index, 1).toString();
+        txtName.setText(name);
+        
+        String mobileNumber = model.getValueAt(index, 2).toString();
+        txtMobileNumber.setText(mobileNumber);
+        
+        String email = model.getValueAt(index, 3).toString();
+        txtEmail.setText(email);
+        
+        String address = model.getValueAt(index, 1).toString();
+        txtAddress.setText(address);
+        
+        String status = model.getValueAt(index, 5).toString();
+        if(status.equals("Active")){
+            comboBoxStatus.addItem("Active");
+            comboBoxStatus.addItem("Inactive");
+        } else {
+            comboBoxStatus.addItem("Inactive");
+            comboBoxStatus.addItem("Active");
+        }
+        
+        txtPassword.setEditable(false);
+        txtPassword.setBackground(Color.DARK_GRAY);
+        
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+    }//GEN-LAST:event_tableUserMouseClicked
 
     /**
      * @param args the command line arguments
