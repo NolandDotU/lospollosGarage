@@ -47,7 +47,6 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOME");
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         user.setBackground(new java.awt.Color(255, 255, 153));
@@ -59,7 +58,7 @@ public class Home extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
-        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 153));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -70,7 +69,7 @@ public class Home extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 6, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 100, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 153));
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -81,7 +80,7 @@ public class Home extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 6, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 100, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 153));
         jButton4.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -92,7 +91,7 @@ public class Home extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 6, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 90, -1));
 
         jButton6.setBackground(new java.awt.Color(255, 255, 153));
         jButton6.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -103,7 +102,7 @@ public class Home extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 6, 90, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 80, -1));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 153));
         jButton7.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -114,7 +113,7 @@ public class Home extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 6, 100, -1));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 110, -1));
 
         LogoutBtn.setBackground(new java.awt.Color(255, 255, 153));
         LogoutBtn.setFont(new java.awt.Font("SansSerif", 1, 8)); // NOI18N
@@ -125,10 +124,9 @@ public class Home extends javax.swing.JFrame {
                 LogoutBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(LogoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 6, 90, -1));
+        getContentPane().add(LogoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/images/home_background.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/images/All_page_Background.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
@@ -136,6 +134,7 @@ public class Home extends javax.swing.JFrame {
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
+        new ManageUser().setVisible(true);
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

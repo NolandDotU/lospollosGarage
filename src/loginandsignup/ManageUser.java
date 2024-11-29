@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableModel;
+import dao.ConnectionProvider;
 import java.sql.*;
 
 /**
@@ -17,7 +18,7 @@ import java.sql.*;
  * @author zero
  */
 public class ManageUser extends javax.swing.JFrame {
-    private int appuserPk = 0;
+    private int userPk = 0;
 
     /**
      * Creates new form ManageUser
@@ -56,7 +57,6 @@ public class ManageUser extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         comboBoxStatus = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -65,10 +65,10 @@ public class ManageUser extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         txtAddress = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -134,13 +134,6 @@ public class ManageUser extends javax.swing.JFrame {
         jLabel5.setText("Password");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
 
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 271, -1));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Status");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
@@ -165,7 +158,7 @@ public class ManageUser extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 470, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, -1, -1));
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setText("Update");
@@ -174,7 +167,7 @@ public class ManageUser extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, -1, -1));
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
 
         btnReset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnReset.setText("Reset");
@@ -183,7 +176,7 @@ public class ManageUser extends javax.swing.JFrame {
                 btnResetActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, -1, -1));
+        getContentPane().add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, -1, -1));
 
         btnClose.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnClose.setText("Close");
@@ -192,7 +185,7 @@ public class ManageUser extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, -1, -1));
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, -1, -1));
 
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,9 +194,12 @@ public class ManageUser extends javax.swing.JFrame {
         });
         getContentPane().add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 271, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/images/All_page_Background.png"))); // NOI18N
+        txtPassword.setText("jPasswordField1");
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 270, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/images/Orders_background.png"))); // NOI18N
         jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,6 +207,7 @@ public class ManageUser extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tableUser.getModel();
+        model.setRowCount(0);
         try{
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
@@ -222,6 +219,8 @@ public class ManageUser extends javax.swing.JFrame {
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        btnUpdate.setEnabled(false);
     }//GEN-LAST:event_formComponentShown
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -236,10 +235,6 @@ public class ManageUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void comboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxStatusActionPerformed
@@ -250,10 +245,13 @@ public class ManageUser extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        new ManageUser().setVisible(true);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
@@ -265,23 +263,24 @@ public class ManageUser extends javax.swing.JFrame {
         String name = txtName.getText();
         String mobileNumber = txtMobileNumber.getText();
         String email = txtEmail.getText();
-        String password = txtPassword.getText();
+//        String password = txtPassword.getText();
         String address = txtAddress.getText();
         String status = (String) comboBoxStatus.getSelectedItem();
 
-        if(ValidateFields("new")){
+        if(!ValidateFields("edit")){
             JOptionPane.showMessageDialog(null, "All field are required");
-        }
-        else {
+        } else {
             try{
                 Connection con = ConnectionProvider.getCon();
-                PreparedStatement ps = con.prepareStatement("insert into appuser (userRole, name, mobileNumber,email,password,address,status) values ('Admin',?,?,?,?,?,?)");
+//                PreparedStatement ps = con.prepareStatement("insert into appuser (userRole, name, mobileNumber,email,password,address,status) values ('Admin',?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("update appuser set name = ?, mobileNumber = ?, email = ?, adrress = ?, status = ? where appuser_pk");
                 ps.setString(1, name);
                 ps.setString(2, mobileNumber);
                 ps.setString(3, email);
-                ps.setString(4, password);
-                ps.setString(5, address);
-                ps.setString(6, status);
+//                ps.setString(4, password);
+                ps.setString(4, address);
+                ps.setString(5, status);
+                ps.setInt(6, userPk);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "User Added Successfully");
                 setVisible(false);
@@ -299,7 +298,7 @@ public class ManageUser extends javax.swing.JFrame {
         TableModel model = tableUser.getModel();
         
         String id = model.getValueAt(index, 0).toString();
-        appuserPk = Integer.parseInt(id);
+        userPk = Integer.parseInt(id);
         
         String name = model.getValueAt(index, 1).toString();
         txtName.setText(name);
@@ -310,7 +309,7 @@ public class ManageUser extends javax.swing.JFrame {
         String email = model.getValueAt(index, 3).toString();
         txtEmail.setText(email);
         
-        String address = model.getValueAt(index, 1).toString();
+        String address = model.getValueAt(index, 4).toString();
         txtAddress.setText(address);
         
         String status = model.getValueAt(index, 5).toString();
@@ -384,6 +383,6 @@ public class ManageUser extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
