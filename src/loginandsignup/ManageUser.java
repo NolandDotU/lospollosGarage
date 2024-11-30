@@ -4,7 +4,7 @@
  */
 package loginandsignup;
 
-import com.mysql.cj.conf.ConnectionPropertiesTransform;
+//import com.mysql.cj.conf.ConnectionPropertiesTransform;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
