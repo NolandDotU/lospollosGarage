@@ -218,7 +218,15 @@ public class Home extends javax.swing.JFrame {
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
-        new ManageUser().setVisible(true);
+        // Hide current window
+        this.setVisible(false); 
+
+        // Open the ManageUser window
+        ManageUser manageUserFrame = new ManageUser();
+        manageUserFrame.setVisible(true);
+
+        // Dispose the current window if not needed
+        this.dispose(); 
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -227,7 +235,14 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new ManageCategory().setVisible(true);
+        this.setVisible(false);
+        
+        //open
+        ManageCategory manageCategoryFrame = new ManageCategory();
+        manageCategoryFrame.setVisible(true);
+        
+        //close
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

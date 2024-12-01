@@ -24,7 +24,6 @@ public class ManageProduct extends javax.swing.JFrame {
     public ManageProduct() {
         initComponents();
         // Setup koneksi database dan model untuk tabel
-        connectDatabase();
         loadProductData();
         loadCategories(); 
     }
