@@ -24,12 +24,10 @@ public class ManageProduct extends javax.swing.JFrame {
     public ManageProduct() {
         initComponents();
         // Setup koneksi database dan model untuk tabel
-        connectDatabase();
         loadProductData();
         loadCategories(); 
     }
     
-       
     // Method untuk memuat data produk ke dalam tabel
     private void loadProductData() {
         try {
