@@ -26,8 +26,8 @@ public class tables {
 //                "address VARCHAR(200), " +
 //                "status VARCHAR(50))"
 //            );
-st.executeUpdate("insert into appuser (userRole, name, mobileNumber,email,password,address,status) value('SuperAdmin', 'Super Admin', '12345', 'superadmin@testemail.com', 'admin', 'Indonesia', 'true')");
-
+//            st.executeUpdate("insert into appuser (userRole, name, mobileNumber,email,password,address,status) value('SuperAdmin', 'Super Admin', '12345', 'superadmin@testemail.com', 'admin', 'Indonesia', 'true')");
+            st.executeUpdate("create table category(category_pk int AUTO_INCREMENT primary key, name varchar(200))");
             JOptionPane.showMessageDialog(null, "Table created successfully!");
         } catch (Exception e) {
             e.printStackTrace();
