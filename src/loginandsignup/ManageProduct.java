@@ -28,7 +28,6 @@ public class ManageProduct extends javax.swing.JFrame {
         loadCategories(); 
     }
     
-       
     // Method untuk memuat data produk ke dalam tabel
     private void loadProductData() {
         try {
