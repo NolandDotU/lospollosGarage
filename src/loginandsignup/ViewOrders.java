@@ -8,6 +8,7 @@ import dao.ConnectionProvider;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -63,6 +64,11 @@ public class ViewOrders extends javax.swing.JFrame {
                 "ID", "Name", "No Telp", "Email"
             }
         ));
+        tableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCustomerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableCustomer);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 410, -1));
@@ -75,6 +81,11 @@ public class ViewOrders extends javax.swing.JFrame {
                 "Order ID", "Date", "Total Paid"
             }
         ));
+        tableOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableOrderMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableOrder);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 408, -1));
@@ -107,10 +118,13 @@ public class ViewOrders extends javax.swing.JFrame {
         // TODO add your handling code here
         DefaultTableModel model = (DefaultTableModel) tableCustomer.getModel();
         try{
-        
             Connection con = ConnectionProvider. getCon () ;
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select "from customer)
+            ResultSet rs = st.executeQuery("select from customer");
+            while (rs.next ()) {
+                model.addRow(new Object[]{rs.getString("customer_pk"),rs.getString("name"), rs. getString("mobileNumber"),rs.getString("email")});
+            }
+       
         }
         catch(Exception e){
             JOptionPane.showConfirmDialog(null, e);
@@ -121,6 +135,38 @@ public class ViewOrders extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
+        // TODO add your handling code here:
+        int index = tableCustomer.getSelectedRow();
+        TableModel model = tableCustomer.getModel();
+        String id = model.getValueAt (index, 0).toString();
+        
+        DefaultTableModel orderModel = (DefaultTableModel) tableOrder.getModel();
+        orderModel.setRowCount(0);
+        
+        try{
+            Connection con = ConnectionProvider. getCon () ;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select from orderDetail where customer_fk="+id+"");
+            while (rs.next ()) {
+                orderModel.addRow(new Object[]{rs.getString("orderId"),rs.getString("orderDate"), rs.getString("totalPaid")});
+            }
+       
+        }
+        catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_tableCustomerMouseClicked
+
+    private void tableOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOrderMouseClicked
+        // TODO add your handling code here:
+        int index = tableOrder.getSelectedRow();
+        TableModel model = tableOrder.getModel();
+        String orderId = model.getValueAt(index, 0).toString();
+        OpenPdf.OpenById(orderId);
+    }//GEN-LAST:event_tableOrderMouseClicked
 
     /**
      * @param args the command line arguments
